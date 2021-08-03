@@ -1,0 +1,22 @@
+PODS:
+  - Flutter (1.0.0)
+  - paymesdk (0.0.1):
+    - Flutter
+
+DEPENDENCIES:
+  - Flutter (from `Flutter`)
+  - paymesdk (from `.symlinks/plugins/paymesdk/ios`)
+
+EXTERNAL SOURCES:
+  Flutter:
+    :path: Flutter
+  paymesdk:
+    :path: ".symlinks/plugins/paymesdk/ios"
+
+SPEC CHECKSUMS:
+  Flutter: 0e3d915762c693b495b44d77113d4970485de6ec
+  paymesdk: 5be609ccda4aa68cf90192250b8666b568a67866
+
+PODFILE CHECKSUM: aafe91acc616949ddb318b77800a7f51bffa2a4c
+
+COCOAPODS: 1.10.1
