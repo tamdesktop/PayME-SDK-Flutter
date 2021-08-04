@@ -19,10 +19,10 @@ class PaymeSdkConfig {
   final PaymeSdkEnv env;
 
   PaymeSdkConfig({
-    @required this.appToken,
-    @required this.publicKey,
-    @required this.privateKey,
-    @required this.secretKey,
+    required this.appToken,
+    required this.publicKey,
+    required this.privateKey,
+    required this.secretKey,
     this.primaryColor = const Color(0xff75255b),
     this.secondaryColor = const Color(0xff9d455f),
     this.language = PaymeSdkLanguage.VN,
