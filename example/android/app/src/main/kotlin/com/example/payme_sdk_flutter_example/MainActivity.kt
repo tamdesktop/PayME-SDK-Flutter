@@ -1,4 +1,4 @@
-package com.tamdesktop.paymesdkflutter.paymesdk_example
+package com.tamdesktop.payme_sdk_flutter_example
 
 import io.flutter.embedding.android.FlutterFragmentActivity
 

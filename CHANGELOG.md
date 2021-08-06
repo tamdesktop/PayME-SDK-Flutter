@@ -1,3 +1,16 @@
-## 0.0.1
+## 1.0.1
 
-* TODO: Describe initial release.
+* Supported functions
+- login
+- logout
+- setLanguage
+- getAccountInfo
+- getWalletInfo
+- getSupportedServices
+- openWallet
+- deposit
+- withdraw
+- openKYC
+- pay
+- transfer
+- openService

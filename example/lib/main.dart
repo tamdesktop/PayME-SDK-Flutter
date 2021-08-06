@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:paymesdk/paymesdk.dart';
+import 'package:payme_sdk_flutter/payme_sdk_flutter.dart';
 
 void main() {
   runApp(MyApp());
@@ -33,7 +33,7 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    final sdkArgs = PaymeSdkConfig(
+    final sdkArgs = PaymeSdkFlutterConfig(
       appToken: APP_TOKEN_DEFAULT_SANDBOX,
       publicKey: PUBLIC_KEY_DEFAULT_SANDBOX,
       privateKey: PRIVATE_KEY_DEFAULT_SANDBOX,
@@ -42,7 +42,7 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: const Text('Plugin example app'),
+          title: const Text('PayME SDK Example'),
         ),
         body: Center(
           child: Column(
@@ -51,8 +51,8 @@ class _MyAppState extends State<MyApp> {
               ElevatedButton(
                 onPressed: () async {
                   try {
-                    final status =
-                        await Paymesdk.login('10002', '0987654321', sdkArgs);
+                    final status = await PaymeSdkFlutter.login(
+                        '1001', '0929000200', sdkArgs);
                     setState(() {
                       _accountStatus = status;
                       _connected = true;
@@ -71,7 +71,7 @@ class _MyAppState extends State<MyApp> {
                 onPressed: _connected
                     ? () async {
                         try {
-                          final info = await Paymesdk.getAccountInfo();
+                          final info = await PaymeSdkFlutter.getAccountInfo();
                           print(info);
                         } catch (e) {
                           print(e);
@@ -84,7 +84,8 @@ class _MyAppState extends State<MyApp> {
                 onPressed: _connected
                     ? () async {
                         try {
-                          final info = await Paymesdk.getSupportedServices();
+                          final info =
+                              await PaymeSdkFlutter.getSupportedServices();
                           print(info);
                         } catch (e) {
                           print(e);
@@ -96,7 +97,7 @@ class _MyAppState extends State<MyApp> {
               ElevatedButton(
                 onPressed: _connected
                     ? () {
-                        Paymesdk.openWallet();
+                        PaymeSdkFlutter.openWallet();
                       }
                     : null,
                 child: Text("4. openWallet"),
@@ -105,13 +106,37 @@ class _MyAppState extends State<MyApp> {
                 onPressed: _connected
                     ? () {
                         try {
-                          Paymesdk.deposit(10000);
+                          PaymeSdkFlutter.deposit(10000);
                         } catch (e) {
                           print(e);
                         }
                       }
                     : null,
                 child: Text("5. deposit"),
+              ),
+              ElevatedButton(
+                onPressed: _connected
+                    ? () {
+                        try {
+                          PaymeSdkFlutter.openKYC();
+                        } catch (e) {
+                          print(e);
+                        }
+                      }
+                    : null,
+                child: Text("6. openKYC"),
+              ),
+              ElevatedButton(
+                onPressed: _connected
+                    ? () {
+                        try {
+                          PaymeSdkFlutter.openService('POWE', 'Điện');
+                        } catch (e) {
+                          print(e);
+                        }
+                      }
+                    : null,
+                child: Text("7. openService"),
               ),
             ],
           ),

@@ -1,6 +1,6 @@
-# paymesdk_example
+# payme_sdk_flutter_example
 
-Demonstrates how to use the paymesdk plugin.
+Demonstrates how to use the payme_sdk_flutter plugin.
 
 ## Getting Started
 

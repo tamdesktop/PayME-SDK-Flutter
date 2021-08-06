@@ -1,6 +1,6 @@
-# paymesdk
+# payme_sdk_flutter
 
-A new flutter plugin project.
+PayME SDK Flutter is plugin for application integrate with PayME Platform.
 
 ## Getting Started
 
@@ -13,3 +13,8 @@ For help getting started with Flutter, view our
 [online documentation](https://flutter.dev/docs), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
 
+## Android
+minSdk version to at least 21
+
+## iOS
+iOS version >= 11

@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.tamdesktop.paymesdkflutter.paymesdk_example">
+    package="com.tamdesktop.payme_sdk_flutter_example">
     <!-- Flutter needs it to communicate with the running application
          to allow setting breakpoints, to provide hot reload, etc.
     -->
