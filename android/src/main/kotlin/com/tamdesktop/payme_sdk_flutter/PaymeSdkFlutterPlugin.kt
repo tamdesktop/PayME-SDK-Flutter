@@ -1,5 +1,6 @@
 package com.tamdesktop.payme_sdk_flutter
 
+import android.app.Activity
 import android.content.Context
 import androidx.annotation.NonNull
 import androidx.fragment.app.FragmentActivity
@@ -28,11 +29,11 @@ class PaymeSdkFlutterPlugin : FlutterPlugin, MethodCallHandler, ActivityAware {
     /// when the Flutter Engine is detached from the Activity
     private lateinit var channel: MethodChannel
     private lateinit var context: Context
-    private lateinit var activityPluginBinding: ActivityPluginBinding
+    private lateinit var activity: Activity
     private lateinit var payme: PayME
 
     override fun onAttachedToActivity(binding: ActivityPluginBinding) {
-        activityPluginBinding = binding
+        activity = binding.activity
     }
 
     override fun onDetachedFromActivityForConfigChanges() {
@@ -40,7 +41,7 @@ class PaymeSdkFlutterPlugin : FlutterPlugin, MethodCallHandler, ActivityAware {
     }
 
     override fun onReattachedToActivityForConfigChanges(binding: ActivityPluginBinding) {
-        activityPluginBinding = binding
+        activity = binding.activity
     }
 
     override fun onDetachedFromActivity() {
@@ -226,7 +227,7 @@ class PaymeSdkFlutterPlugin : FlutterPlugin, MethodCallHandler, ActivityAware {
     }
 
     private fun openWallet(@NonNull call: MethodCall, @NonNull result: Result) {
-        var fragment = activityPluginBinding.activity as FragmentActivity
+        var fragment = activity as FragmentActivity
         payme.openWallet(fragment.supportFragmentManager,
                 onSuccess = { data: JSONObject? ->
                     result.success(data)
@@ -248,7 +249,7 @@ class PaymeSdkFlutterPlugin : FlutterPlugin, MethodCallHandler, ActivityAware {
             result.error("MIN_LIMIT", "Vui lòng nạp hơn 10.000VND", null)
             return
         }
-        var fragment = activityPluginBinding.activity as FragmentActivity
+        var fragment = activity as FragmentActivity
         payme.deposit(fragment.supportFragmentManager, amount, true,
                 onSuccess = { data: JSONObject? ->
                     result.success(data)
@@ -270,7 +271,7 @@ class PaymeSdkFlutterPlugin : FlutterPlugin, MethodCallHandler, ActivityAware {
             result.error("MIN_LIMIT", "Vui lòng rút hơn 10.000VND", null)
             return
         }
-        var fragment = activityPluginBinding.activity as FragmentActivity
+        var fragment = activity as FragmentActivity
         payme.withdraw(fragment.supportFragmentManager, amount, true,
                 onSuccess = { data: JSONObject? ->
                     result.success(data)
@@ -283,7 +284,7 @@ class PaymeSdkFlutterPlugin : FlutterPlugin, MethodCallHandler, ActivityAware {
     }
 
     private fun openKYC(@NonNull call: MethodCall, @NonNull result: Result) {
-        var fragment = activityPluginBinding.activity as FragmentActivity
+        var fragment = activity as FragmentActivity
         payme.openKYC(fragment.supportFragmentManager,
                 onSuccess = { data: JSONObject? ->
                     result.success("KYC thành công")
@@ -311,7 +312,7 @@ class PaymeSdkFlutterPlugin : FlutterPlugin, MethodCallHandler, ActivityAware {
             result.error("MIN_LIMIT", "Vui lòng thanh toán hơn 10.000VND", null)
             return
         }
-        var fragment = activityPluginBinding.activity as FragmentActivity
+        var fragment = activity as FragmentActivity
         var infoPayment = InfoPayment(
                 "PAY",
                 amount,
@@ -343,7 +344,7 @@ class PaymeSdkFlutterPlugin : FlutterPlugin, MethodCallHandler, ActivityAware {
             result.error("MIN_LIMIT", "Vui lòng thanh toán hơn 10.000VND", null)
             return
         }
-        var fragment = activityPluginBinding.activity as FragmentActivity
+        var fragment = activity as FragmentActivity
         payme.transfer(fragment.supportFragmentManager, amount, note, true,
                 onSuccess = { data: JSONObject? ->
                     result.success(data)
@@ -377,7 +378,7 @@ class PaymeSdkFlutterPlugin : FlutterPlugin, MethodCallHandler, ActivityAware {
             result.error("MISSING_INFO", "Missing info", null)
             return
         }
-        var fragment = activityPluginBinding.activity as FragmentActivity
+        var fragment = activity as FragmentActivity
         var service = Service(sCode, sDesc)
         payme.openService(fragment.supportFragmentManager, service,
                 onSuccess = { data: JSONObject? ->

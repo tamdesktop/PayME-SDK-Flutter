@@ -14,3 +14,7 @@
 - pay
 - transfer
 - openService
+
+## 1.0.2
+
+- Fix Activity issue on Android
