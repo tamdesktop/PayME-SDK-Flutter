@@ -238,7 +238,7 @@ public class SwiftPaymeSdkFlutterPlugin: NSObject, FlutterPlugin {
       return
     }
     let amount = args["amount"] as! Int
-    let storeId = args["store_id"] as! Int
+    let storeId = args["store_id"] as! String
     let orderId = args["order_id"] as! String
     let note = args["note"] as? String
     let payCode = args["pay_code"] as! String
@@ -249,7 +249,7 @@ public class SwiftPaymeSdkFlutterPlugin: NSObject, FlutterPlugin {
       return
     }
     payME?.pay(currentVC: vc,
-               storeId: storeId,
+               storeId: Int.init(storeId)!,
                orderId: orderId,
                amount: amount,
                note: note,

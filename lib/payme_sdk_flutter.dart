@@ -105,7 +105,7 @@ class PaymeSdkFlutter {
 
   static Future<dynamic> pay(
     int amount,
-    int storeId,
+    String storeId,
     String orderId,
     PaymeSdkFlutterPayCode payCode, {
     String? note,

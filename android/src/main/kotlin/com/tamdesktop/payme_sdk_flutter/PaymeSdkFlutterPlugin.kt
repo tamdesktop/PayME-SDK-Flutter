@@ -300,7 +300,7 @@ class PaymeSdkFlutterPlugin : FlutterPlugin, MethodCallHandler, ActivityAware {
         val amount = call.argument<Int>("amount")
         val note = call.argument<String>("note")
         val orderId = call.argument<String>("order_id")
-        val storeId = call.argument<Long>("store_id")
+        val storeId = call.argument<String>("store_id")
         val payCode = call.argument<String>("pay_code")
         val extraData = call.argument<String>("extra_data")
         val isShowResultUI = call.argument<Boolean>("is_show_result_ui")
@@ -318,7 +318,7 @@ class PaymeSdkFlutterPlugin : FlutterPlugin, MethodCallHandler, ActivityAware {
                 amount,
                 note,
                 orderId,
-                storeId,
+                storeId.toLong(),
                 "OpenEWallet",
                 extraData
         )
