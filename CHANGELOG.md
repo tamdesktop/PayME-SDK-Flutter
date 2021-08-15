@@ -1,6 +1,4 @@
 ## 1.0.1
-
-* Supported functions
 - login
 - logout
 - setLanguage
@@ -14,11 +12,9 @@
 - pay
 - transfer
 - openService
-
 ## 1.0.2
-
 - Fix Activity issue on Android
-
 ## 1.0.3
-
 - Fix StoreId data type in Pay function
+## 1.0.4
+- Fix Unsupported value on Android

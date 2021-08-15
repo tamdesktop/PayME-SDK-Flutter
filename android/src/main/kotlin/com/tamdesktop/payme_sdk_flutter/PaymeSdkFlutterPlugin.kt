@@ -186,7 +186,7 @@ class PaymeSdkFlutterPlugin : FlutterPlugin, MethodCallHandler, ActivityAware {
     private fun getAccountInfo(@NonNull call: MethodCall, @NonNull result: Result) {
         payme.getAccountInfo(
                 onSuccess = { data: JSONObject ->
-                    result.success(data)
+                    result.success(data.toString())
                 },
                 onError = { jsonObject: JSONObject?, code: Int, message: String? ->
                     println(message)
@@ -198,7 +198,7 @@ class PaymeSdkFlutterPlugin : FlutterPlugin, MethodCallHandler, ActivityAware {
     private fun getWalletInfo(@NonNull call: MethodCall, @NonNull result: Result) {
         payme.getWalletInfo(
                 onSuccess = { data: JSONObject ->
-                    result.success(data)
+                    result.success(data.toString())
                 },
                 onError = { jsonObject: JSONObject?, code: Int, message: String? ->
                     println(message)
@@ -241,11 +241,7 @@ class PaymeSdkFlutterPlugin : FlutterPlugin, MethodCallHandler, ActivityAware {
 
     private fun deposit(@NonNull call: MethodCall, @NonNull result: Result) {
         val amount = call.argument<Int>("amount")
-        if (amount == null) {
-            result.error("MISSING_INFO", "Missing info", null)
-            return
-        }
-        if (amount < 10000) {
+        if (amount!=null && amount < 10000) {
             result.error("MIN_LIMIT", "Vui lòng nạp hơn 10.000VND", null)
             return
         }
@@ -263,11 +259,7 @@ class PaymeSdkFlutterPlugin : FlutterPlugin, MethodCallHandler, ActivityAware {
 
     private fun withdraw(@NonNull call: MethodCall, @NonNull result: Result) {
         val amount = call.argument<Int>("amount")
-        if (amount == null) {
-            result.error("MISSING_INFO", "Missing info", null)
-            return
-        }
-        if (amount < 10000) {
+        if (amount != null && amount < 10000) {
             result.error("MIN_LIMIT", "Vui lòng rút hơn 10.000VND", null)
             return
         }
@@ -336,16 +328,16 @@ class PaymeSdkFlutterPlugin : FlutterPlugin, MethodCallHandler, ActivityAware {
     private fun transfer(@NonNull call: MethodCall, @NonNull result: Result) {
         val amount = call.argument<Int>("amount")
         val note = call.argument<String>("note")
-        if (amount == null || note == null) {
-            result.error("MISSING_INFO", "Missing info", null)
-            return
-        }
-        if (amount < 10000) {
+        if (amount != null && amount < 10000) {
             result.error("MIN_LIMIT", "Vui lòng thanh toán hơn 10.000VND", null)
             return
         }
+        var description = ""
+        if(note!=null){
+            description = note
+        }
         var fragment = activity as FragmentActivity
-        payme.transfer(fragment.supportFragmentManager, amount, note, true,
+        payme.transfer(fragment.supportFragmentManager, amount, description, true,
                 onSuccess = { data: JSONObject? ->
                     result.success(data)
                 },

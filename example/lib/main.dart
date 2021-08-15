@@ -106,7 +106,7 @@ class _MyAppState extends State<MyApp> {
                 onPressed: _connected
                     ? () {
                         try {
-                          PaymeSdkFlutter.deposit(10000);
+                          PaymeSdkFlutter.deposit();
                         } catch (e) {
                           print(e);
                         }

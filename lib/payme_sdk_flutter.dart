@@ -1,4 +1,6 @@
 import 'dart:async';
+import 'dart:convert';
+import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -73,12 +75,20 @@ class PaymeSdkFlutter {
     return _channel.invokeMethod('setLanguage', args);
   }
 
-  static Future<dynamic> getAccountInfo() {
-    return _channel.invokeMethod('getAccountInfo');
+  static Future<dynamic> getAccountInfo() async {
+    final rs = await _channel.invokeMethod('getAccountInfo');
+    if (Platform.isAndroid && rs is String) {
+      return jsonDecode(rs);
+    }
+    return rs;
   }
 
-  static Future<dynamic> getWalletInfo() {
-    return _channel.invokeMethod('getWalletInfo');
+  static Future<dynamic> getWalletInfo() async {
+    final rs = await _channel.invokeMethod('getWalletInfo');
+    if (Platform.isAndroid && rs is String) {
+      return jsonDecode(rs);
+    }
+    return rs;
   }
 
   static Future<dynamic> getSupportedServices() {
@@ -89,12 +99,12 @@ class PaymeSdkFlutter {
     return _channel.invokeMethod('openWallet');
   }
 
-  static Future<dynamic> deposit(int amount) {
+  static Future<dynamic> deposit({int? amount}) {
     final args = {'amount': amount};
     return _channel.invokeMethod('deposit', args);
   }
 
-  static Future<dynamic> withdraw(int amount) {
+  static Future<dynamic> withdraw({int? amount}) {
     final args = {'amount': amount};
     return _channel.invokeMethod('withdraw', args);
   }
@@ -124,7 +134,7 @@ class PaymeSdkFlutter {
     return _channel.invokeMethod('pay', args);
   }
 
-  static Future<dynamic> transfer(int amount, {String note = ""}) {
+  static Future<dynamic> transfer({int? amount, String note = ""}) {
     final args = {'amount': amount, 'note': note};
     return _channel.invokeMethod('transfer', args);
   }

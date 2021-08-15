@@ -167,27 +167,25 @@ public class SwiftPaymeSdkFlutterPlugin: NSObject, FlutterPlugin {
       result(FlutterError(code: "MISSING_INFO", message: "Missing info", details: nil))
       return
     }
-    let amount = args["amount"] as! Int
-    
-    if (amount >= 10000) {
-      let amountDeposit = amount
-      guard let vc = UIApplication.shared.delegate?.window??.rootViewController  as? FlutterViewController else {
-        result(FlutterError(code: "-1", message: "Can't find View Controller", details: nil))
-        return
-      }
-      self.payME!.deposit(currentVC: vc,
-                          amount: amountDeposit,
-                          description: "",
-                          extraData: nil,
-                          closeWhenDone: true,
-                          onSuccess: { success in
-        result(success)
-      }, onError: { error in
-        result(FlutterError(code: self.handleErrorCode(error), message: error["message"] as? String, details: nil))
-      })
-    } else {
+    let amount = args["amount"] as? Int
+    if(amount != nil && amount! < 10000){
       result(FlutterError(code: "MIN_LIMIT", message: "Vui lòng nạp hơn 10.000VND", details: nil))
+      return
     }
+    guard let vc = UIApplication.shared.delegate?.window??.rootViewController  as? FlutterViewController else {
+      result(FlutterError(code: "-1", message: "Can't find View Controller", details: nil))
+      return
+    }
+    self.payME!.deposit(currentVC: vc,
+                        amount: amount,
+                        description: "",
+                        extraData: nil,
+                        closeWhenDone: true,
+                        onSuccess: { success in
+      result(success)
+    }, onError: { error in
+      result(FlutterError(code: self.handleErrorCode(error), message: error["message"] as? String, details: nil))
+    })
   }
   
   private func withdraw(_ call: FlutterMethodCall, result: @escaping FlutterResult){
@@ -195,26 +193,25 @@ public class SwiftPaymeSdkFlutterPlugin: NSObject, FlutterPlugin {
       result(FlutterError(code: "MISSING_INFO", message: "Missing info", details: nil))
       return
     }
-    let amount = args["amount"] as! Int
-    
-    if (amount >= 10000) {
-      guard let vc = UIApplication.shared.delegate?.window??.rootViewController  as? FlutterViewController else {
-        result(FlutterError(code: "-1", message: "Can't find View Controller", details: nil))
-        return
-      }
-      let amountWithDraw = amount
-      payME!.withdraw(currentVC: vc,
-                      amount: amountWithDraw,
-                      description: "",
-                      extraData: nil,
-                      onSuccess: { success in
-                        result(success)
-                      }, onError: { error in
-                        result(FlutterError(code: self.handleErrorCode(error), message: error["message"] as? String, details: nil))
-                      })
-    } else {
+    let amount = args["amount"] as? Int
+    if(amount != nil && amount! < 10000){
       result(FlutterError(code: "MIN_LIMIT", message: "Vui lòng rút hơn 10.000VND", details: nil))
+      return
     }
+    guard let vc = UIApplication.shared.delegate?.window??.rootViewController  as? FlutterViewController else {
+      result(FlutterError(code: "-1", message: "Can't find View Controller", details: nil))
+      return
+    }
+    payME!.withdraw(currentVC: vc,
+                    amount: amount,
+                    description: "",
+                    extraData: nil,
+                    onSuccess: { success in
+                      result(success)
+                    }, onError: { error in
+                      result(FlutterError(code: self.handleErrorCode(error), message: error["message"] as? String, details: nil))
+                    })
+    
   }
   
   private func openKYC(_ call: FlutterMethodCall, result: @escaping FlutterResult){
@@ -271,9 +268,9 @@ public class SwiftPaymeSdkFlutterPlugin: NSObject, FlutterPlugin {
       result(FlutterError(code: "MISSING_INFO", message: "Missing info", details: nil))
       return
     }
-    let amount = args["amount"] as! Int
+    let amount = args["amount"] as? Int
     let note = args["note"] as? String
-    if (amount < 10000) {
+    if (amount != nil && amount! < 10000) {
       result(FlutterError(code: "MIN_LIMIT", message: "Vui lòng thanh toán hơn 10.000VND", details: nil))
       return
     }

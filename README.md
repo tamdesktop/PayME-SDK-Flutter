@@ -15,6 +15,6 @@ samples, guidance on mobile development, and a full API reference.
 
 ## Android
 minSdk version to at least 21
-
+public class MainActivity extends FlutterFragmentActivity
 ## iOS
 iOS version >= 11
