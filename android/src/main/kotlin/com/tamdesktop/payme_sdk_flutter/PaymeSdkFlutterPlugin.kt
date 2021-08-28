@@ -37,7 +37,6 @@ class PaymeSdkFlutterPlugin : FlutterPlugin, MethodCallHandler, ActivityAware {
     }
 
     override fun onDetachedFromActivityForConfigChanges() {
-        TODO("Not yet implemented")
     }
 
     override fun onReattachedToActivityForConfigChanges(binding: ActivityPluginBinding) {
@@ -45,7 +44,6 @@ class PaymeSdkFlutterPlugin : FlutterPlugin, MethodCallHandler, ActivityAware {
     }
 
     override fun onDetachedFromActivity() {
-        TODO("Not yet implemented")
     }
 
     override fun onAttachedToEngine(@NonNull flutterPluginBinding: FlutterPlugin.FlutterPluginBinding) {
@@ -279,7 +277,7 @@ class PaymeSdkFlutterPlugin : FlutterPlugin, MethodCallHandler, ActivityAware {
         var fragment = activity as FragmentActivity
         payme.openKYC(fragment.supportFragmentManager,
                 onSuccess = { data: JSONObject? ->
-                    result.success("KYC thành công")
+                    result.success(data)
                 },
                 onError = { jsonObject: JSONObject?, code: Int, message: String? ->
                     println(message)
@@ -374,7 +372,7 @@ class PaymeSdkFlutterPlugin : FlutterPlugin, MethodCallHandler, ActivityAware {
         var service = Service(sCode, sDesc)
         payme.openService(fragment.supportFragmentManager, service,
                 onSuccess = { data: JSONObject? ->
-                    result.success("KYC thành công")
+                    result.success(data)
                 },
                 onError = { jsonObject: JSONObject?, code: Int, message: String? ->
                     println(message)
