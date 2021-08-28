@@ -18,3 +18,5 @@
 - Fix StoreId data type in Pay function
 ## 1.0.4
 - Fix Unsupported value on Android
+## 1.1.0
+- Update PaymeSDK Version 0.9.20

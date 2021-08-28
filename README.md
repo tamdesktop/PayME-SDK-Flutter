@@ -18,3 +18,4 @@ minSdk version to at least 21
 public class MainActivity extends FlutterFragmentActivity
 ## iOS
 iOS version >= 11
+Add NSContactsUsageDescription to plist
