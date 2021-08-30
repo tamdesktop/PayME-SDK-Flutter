@@ -14,8 +14,8 @@ For help getting started with Flutter, view our
 samples, guidance on mobile development, and a full API reference.
 
 ## Android
-minSdk version to at least 21
-public class MainActivity extends FlutterFragmentActivity
+- minSdk version to at least 21
+- public class MainActivity extends FlutterFragmentActivity
 ## iOS
-iOS version >= 11
-Add NSContactsUsageDescription to plist
+- iOS version >= 11
+- Add NSContactsUsageDescription to plist
