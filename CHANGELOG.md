@@ -20,3 +20,5 @@
 - Fix Unsupported value on Android
 ## 1.1.0
 - Update PaymeSDK Version 0.9.20
+## 1.1.1
+- Update PaymeSDK Version 0.9.22
