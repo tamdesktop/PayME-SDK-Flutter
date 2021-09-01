@@ -22,3 +22,5 @@
 - Update PaymeSDK Version 0.9.20
 ## 1.1.1
 - Update PaymeSDK Version 0.9.22
+## 1.1.2
+- Update PaymeSDK iOS Version 0.9.23
