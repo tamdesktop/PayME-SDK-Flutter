@@ -95,22 +95,38 @@ class PaymeSdkFlutter {
     return _channel.invokeMethod('getSupportedServices');
   }
 
-  static Future<dynamic> openWallet() {
-    return _channel.invokeMethod('openWallet');
+  static Future<dynamic> openWallet() async {
+    final rs = await _channel.invokeMethod('openWallet');
+    if (Platform.isAndroid && rs is String) {
+      return jsonDecode(rs);
+    }
+    return rs;
   }
 
-  static Future<dynamic> deposit({int? amount}) {
+  static Future<dynamic> deposit({int? amount}) async {
     final args = {'amount': amount};
-    return _channel.invokeMethod('deposit', args);
+    final rs = await _channel.invokeMethod('deposit', args);
+    if (Platform.isAndroid && rs is String) {
+      return jsonDecode(rs);
+    }
+    return rs;
   }
 
-  static Future<dynamic> withdraw({int? amount}) {
+  static Future<dynamic> withdraw({int? amount}) async {
     final args = {'amount': amount};
-    return _channel.invokeMethod('withdraw', args);
+    final rs = await _channel.invokeMethod('withdraw', args);
+    if (Platform.isAndroid && rs is String) {
+      return jsonDecode(rs);
+    }
+    return rs;
   }
 
-  static Future<dynamic> openKYC() {
-    return _channel.invokeMethod('openKYC');
+  static Future<dynamic> openKYC() async {
+    final rs = await _channel.invokeMethod('openKYC');
+    if (Platform.isAndroid && rs is String) {
+      return jsonDecode(rs);
+    }
+    return rs;
   }
 
   static Future<dynamic> pay(
@@ -121,7 +137,7 @@ class PaymeSdkFlutter {
     String? note,
     String? extraData,
     bool isShowResultUI = true,
-  }) {
+  }) async {
     final args = {
       'amount': amount,
       'store_id': storeId,
@@ -131,21 +147,33 @@ class PaymeSdkFlutter {
       'extra_data': extraData,
       'is_show_result_ui': isShowResultUI,
     };
-    return _channel.invokeMethod('pay', args);
+    final rs = await _channel.invokeMethod('pay', args);
+    if (Platform.isAndroid && rs is String) {
+      return jsonDecode(rs);
+    }
+    return rs;
   }
 
-  static Future<dynamic> transfer({int? amount, String note = ""}) {
+  static Future<dynamic> transfer({int? amount, String note = ""}) async {
     final args = {'amount': amount, 'note': note};
-    return _channel.invokeMethod('transfer', args);
+    final rs = await _channel.invokeMethod('transfer', args);
+    if (Platform.isAndroid && rs is String) {
+      return jsonDecode(rs);
+    }
+    return rs;
   }
 
   static Future<dynamic> openService(
-      String serviceCode, String serviceDescription) {
+      String serviceCode, String serviceDescription) async {
     final args = {
       'service_code': serviceCode,
       'service_desc': serviceDescription
     };
-    return _channel.invokeMethod('openService', args);
+    final rs = await _channel.invokeMethod('openService', args);
+    if (Platform.isAndroid && rs is String) {
+      return jsonDecode(rs);
+    }
+    return rs;
   }
 }
 
