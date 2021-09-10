@@ -228,7 +228,11 @@ class PaymeSdkFlutterPlugin : FlutterPlugin, MethodCallHandler, ActivityAware {
         var fragment = activity as FragmentActivity
         payme.openWallet(fragment.supportFragmentManager,
                 onSuccess = { data: JSONObject? ->
-                    result.success(data)
+                    if(data == null){
+                        result.success(data)
+                    }else{
+                        result.success(data.toString())
+                    }
                 },
                 onError = { jsonObject: JSONObject?, code: Int, message: String? ->
                     println(message)
@@ -246,7 +250,11 @@ class PaymeSdkFlutterPlugin : FlutterPlugin, MethodCallHandler, ActivityAware {
         var fragment = activity as FragmentActivity
         payme.deposit(fragment.supportFragmentManager, amount, true,
                 onSuccess = { data: JSONObject? ->
-                    result.success(data)
+                    if(data == null){
+                        result.success(data)
+                    }else{
+                        result.success(data.toString())
+                    }
                 },
                 onError = { jsonObject: JSONObject?, code: Int, message: String? ->
                     println(message)
@@ -264,7 +272,11 @@ class PaymeSdkFlutterPlugin : FlutterPlugin, MethodCallHandler, ActivityAware {
         var fragment = activity as FragmentActivity
         payme.withdraw(fragment.supportFragmentManager, amount, true,
                 onSuccess = { data: JSONObject? ->
-                    result.success(data)
+                    if(data == null){
+                        result.success(data)
+                    }else{
+                        result.success(data.toString())
+                    }
                 },
                 onError = { jsonObject: JSONObject?, code: Int, message: String? ->
                     println(message)
@@ -277,7 +289,11 @@ class PaymeSdkFlutterPlugin : FlutterPlugin, MethodCallHandler, ActivityAware {
         var fragment = activity as FragmentActivity
         payme.openKYC(fragment.supportFragmentManager,
                 onSuccess = { data: JSONObject? ->
-                    result.success(data)
+                    if(data == null){
+                        result.success(data)
+                    }else{
+                        result.success(data.toString())
+                    }
                 },
                 onError = { jsonObject: JSONObject?, code: Int, message: String? ->
                     println(message)
@@ -314,7 +330,11 @@ class PaymeSdkFlutterPlugin : FlutterPlugin, MethodCallHandler, ActivityAware {
         )
         payme.pay(fragment.supportFragmentManager, infoPayment, isShowResultUI, payCode,
                 onSuccess = { data: JSONObject? ->
-                    result.success(data)
+                    if(data == null){
+                        result.success(data)
+                    }else{
+                        result.success(data.toString())
+                    }
                 },
                 onError = { jsonObject: JSONObject?, code: Int, message: String? ->
                     println(message)
@@ -337,7 +357,11 @@ class PaymeSdkFlutterPlugin : FlutterPlugin, MethodCallHandler, ActivityAware {
         var fragment = activity as FragmentActivity
         payme.transfer(fragment.supportFragmentManager, amount, description, true,
                 onSuccess = { data: JSONObject? ->
-                    result.success(data)
+                    if(data == null){
+                        result.success(data)
+                    }else{
+                        result.success(data.toString())
+                    }
                 },
                 onError = { jsonObject: JSONObject?, code: Int, message: String? ->
                     println(message)
@@ -372,7 +396,11 @@ class PaymeSdkFlutterPlugin : FlutterPlugin, MethodCallHandler, ActivityAware {
         var service = Service(sCode, sDesc)
         payme.openService(fragment.supportFragmentManager, service,
                 onSuccess = { data: JSONObject? ->
-                    result.success(data)
+                    if(data == null){
+                        result.success(data)
+                    }else{
+                        result.success(data.toString())
+                    }
                 },
                 onError = { jsonObject: JSONObject?, code: Int, message: String? ->
                     println(message)
