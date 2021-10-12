@@ -109,6 +109,10 @@ public class SwiftPaymeSdkFlutterPlugin: NSObject, FlutterPlugin {
         result("NOT_KYC")
       }else if success["code"] as! PayME.KYCState == PayME.KYCState.NOT_ACTIVATED {
         result("NOT_ACTIVATED")
+      }else if success["code"] as! PayME.KYCState == PayME.KYCState.KYC_REVIEW {
+        result("KYC_REVIEW")
+      }else if success["code"] as! PayME.KYCState == PayME.KYCState.KYC_REJECTED {
+        result("KYC_REJECTED")
       }else if success["code"] as! PayME.KYCState == PayME.KYCState.KYC_APPROVED {
         result("KYC_APPROVED")
       }else{

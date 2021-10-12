@@ -26,3 +26,5 @@
 - Update PaymeSDK iOS Version 0.9.23
 ## 1.1.3
 - Fix response from Android to Flutter
+## 1.1.4
+- Update PaymeSDK iOS v0.9.32 & Android v0.9.29
