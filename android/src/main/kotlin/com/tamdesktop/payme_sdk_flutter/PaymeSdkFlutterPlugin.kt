@@ -161,6 +161,16 @@ class PaymeSdkFlutterPlugin : FlutterPlugin, MethodCallHandler, ActivityAware {
                             println("NOT_KYC")
                             result.success("NOT_KYC")
                         }
+                        AccountStatus.KYC_REVIEW -> {
+                            //Tài khoản chưa định danh
+                            println("KYC_REVIEW")
+                            result.success("KYC_REVIEW")
+                        }
+                        AccountStatus.KYC_REJECTED -> {
+                            //Tài khoản chưa định danh
+                            println("KYC_REJECTED")
+                            result.success("KYC_REJECTED")
+                        }
                         AccountStatus.KYC_APPROVED -> {
                             //Tài khoản đã định danh
                             println("KYC_APPROVED")
@@ -310,7 +320,7 @@ class PaymeSdkFlutterPlugin : FlutterPlugin, MethodCallHandler, ActivityAware {
         val payCode = call.argument<String>("pay_code")
         val extraData = call.argument<String>("extra_data")
         val isShowResultUI = call.argument<Boolean>("is_show_result_ui")
-        if (amount == null || storeId == null || isShowResultUI == null || payCode == null) {
+        if (amount == null || storeId == null || isShowResultUI == null || payCode == null || orderId == null) {
             result.error("MISSING_INFO", "Missing info", null)
             return
         }
@@ -319,16 +329,8 @@ class PaymeSdkFlutterPlugin : FlutterPlugin, MethodCallHandler, ActivityAware {
             return
         }
         var fragment = activity as FragmentActivity
-        var infoPayment = InfoPayment(
-                "PAY",
-                amount,
-                note,
-                orderId,
-                storeId.toLong(),
-                "OpenEWallet",
-                extraData
-        )
-        payme.pay(fragment.supportFragmentManager, infoPayment, isShowResultUI, payCode,
+        var infoPayment = InfoPayment("PAY", amount, note, orderId, storeId.toLong(), "OpenEWallet", extraData)
+        payme.pay(fragment.supportFragmentManager, infoPayment, isShowResultUI, payCode, null,
                 onSuccess = { data: JSONObject? ->
                     if(data == null){
                         result.success(data)
