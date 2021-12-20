@@ -329,8 +329,8 @@ class PaymeSdkFlutterPlugin : FlutterPlugin, MethodCallHandler, ActivityAware {
             return
         }
         var fragment = activity as FragmentActivity
-        var infoPayment = InfoPayment("PAY", amount, note, orderId, storeId.toLong(), "OpenEWallet", extraData)
-        payme.pay(fragment.supportFragmentManager, infoPayment, isShowResultUI, payCode, null,
+        var infoPayment = InfoPayment("PAY", amount, note, orderId, storeId.toLong(), "OpenEWallet", extraData, null)
+        payme.pay(fragment.supportFragmentManager, infoPayment, isShowResultUI, payCode,
                 onSuccess = { data: JSONObject? ->
                     if(data == null){
                         result.success(data)
