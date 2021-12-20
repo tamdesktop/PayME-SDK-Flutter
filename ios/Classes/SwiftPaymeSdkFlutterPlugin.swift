@@ -251,6 +251,7 @@ public class SwiftPaymeSdkFlutterPlugin: NSObject, FlutterPlugin {
     }
     payME?.pay(currentVC: vc,
                storeId: Int.init(storeId)!,
+               userName: nil,
                orderId: orderId,
                amount: amount,
                note: note,
