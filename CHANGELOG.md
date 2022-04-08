@@ -38,3 +38,6 @@
 - Fix build Android
 ## 1.1.9
 - Fix build iOS
+
+## 1.2.0
+- Update PaymeSDK iOS v0.9.50 & Android v0.9.37
